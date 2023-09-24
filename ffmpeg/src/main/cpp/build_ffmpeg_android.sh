@@ -55,8 +55,15 @@ function build_android {
     --disable-ffmpeg \
     --disable-debug \
     --disable-doc \
-    --enable-avfilter \
-    --enable-decoders \
+    --enable-avformat \
+    --enable-avcodec \
+    --enable-avutil \
+    --disable-avfilter \
+    --disable-avdevice \
+    --disable-swscale \
+    --disable-swresample \
+    --disable-everything \
+    --enable-decoder=h264 \
     $ADDITIONAL_CONFIGURE_FLAG
 }
 

@@ -12,7 +12,6 @@ PLATFORM=aarch64
 ANDROID=android
 CFLAGS=""
 LDFLAGS=""
-
 else
 echo "build for 32bit"
 ARCH=arm
@@ -24,13 +23,13 @@ CFLAGS="-mfloat-abi=softfp -march=$CPU"
 LDFLAGS="-Wl,--fix-cortex-a8"
 fi
 
-export NDK=/Users/xufulong/Library/Android/android-ndk-r20b
+export NDK=/Users/suzhou/Library/Android/sdk/ndk/21.4.7075529
 export TOOLCHAIN=$NDK/toolchains/llvm/prebuilt/darwin-x86_64/bin
 export SYSROOT=$NDK/toolchains/llvm/prebuilt/darwin-x86_64/sysroot
 export CROSS_PREFIX=$TOOLCHAIN/$ARCH-linux-$ANDROID-
 export CC=$TOOLCHAIN/$PLATFORM-linux-$ANDROID$API-clang
 export CXX=$TOOLCHAIN/$PLATFORM-linux-$ANDROID$API-clang++
-export PREFIX=../ffmpeg-android/$CPU
+export PREFIX=../build/$CPU
 
 function build_android {
     ./configure \
@@ -59,8 +58,9 @@ function build_android {
     --enable-avfilter \
     --enable-decoders \
     $ADDITIONAL_CONFIGURE_FLAG
-
-    make
-    make install
 }
+
 build_android
+
+make -j4
+make install

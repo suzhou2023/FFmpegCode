@@ -23,12 +23,12 @@ CFLAGS="-mfloat-abi=softfp -march=$CPU"
 LDFLAGS="-Wl,--fix-cortex-a8"
 fi
 
-export NDK=/Users/suzhou/Library/Android/sdk/ndk/21.4.7075529
+export NDK=/Users/suzhou/Library/Android/sdk/ndk/23.1.7779620
 export TOOLCHAIN=$NDK/toolchains/llvm/prebuilt/darwin-x86_64/bin
 export SYSROOT=$NDK/toolchains/llvm/prebuilt/darwin-x86_64/sysroot
-export CROSS_PREFIX=$TOOLCHAIN/$ARCH-linux-$ANDROID-
-export CC=$TOOLCHAIN/$PLATFORM-linux-$ANDROID$API-clang
-export CXX=$TOOLCHAIN/$PLATFORM-linux-$ANDROID$API-clang++
+export CROSS_PREFIX=$TOOLCHAIN/$ARCH-linux-$ANDROID$API
+export CC=$CROSS_PREFIX-clang
+export CXX=$CROSS_PREFIX-clang++
 export PREFIX=../build/$CPU
 
 function build_android {
@@ -40,8 +40,8 @@ function build_android {
     --cpu=$CPU \
     --cc=$CC \
     --cxx=$CXX \
-    --nm=$TOOLCHAIN/$ARCH-linux-$ANDROID-nm \
-    --strip=$TOOLCHAIN/$ARCH-linux-$ANDROID-strip \
+    --nm=$TOOLCHAIN/llvm-nm \
+    --strip=$TOOLCHAIN/llvm-strip \
     --enable-cross-compile \
     --sysroot=$SYSROOT \
     --extra-cflags="$CFLAGS" \

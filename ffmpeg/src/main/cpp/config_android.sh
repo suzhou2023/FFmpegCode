@@ -31,8 +31,7 @@ export CC=$CROSS_PREFIX-clang
 export CXX=$CROSS_PREFIX-clang++
 export PREFIX=../build/$CPU
 
-function build_android {
-    ./configure \
+ ./configure \
     --prefix=$PREFIX \
     --cross-prefix=$CROSS_PREFIX \
     --target-os=android \
@@ -42,32 +41,32 @@ function build_android {
     --cxx=$CXX \
     --nm=$TOOLCHAIN/llvm-nm \
     --strip=$TOOLCHAIN/llvm-strip \
+    --pkg-config=$TOOLCHAIN/llvm-config \
     --enable-cross-compile \
     --sysroot=$SYSROOT \
     --extra-cflags="$CFLAGS" \
     --extra-ldflags="$LDFLAGS" \
     --extra-ldexeflags=-pie \
-    --enable-runtime-cpudetect \
+    --disable-debug \
     --disable-static \
     --enable-shared \
-    --disable-ffprobe \
-    --disable-ffplay \
-    --disable-ffmpeg \
-    --disable-debug \
-    --disable-doc \
-    --enable-avformat \
-    --enable-avcodec \
-    --enable-avutil \
-    --disable-avfilter \
-    --disable-avdevice \
-    --disable-swscale \
     --disable-swresample \
-    --disable-everything \
+    --disable-swscale \
+    --disable-postproc \
+    --disable-avfilter \
+    --disable-encoders \
+    --disable-decoders \
+    --disable-demuxers \
+    --disable-muxers \
+    --disable-protocols \
+    --disable-filters \
+    --disable-bsfs \
+    --disable-parsers \
     --enable-decoder=h264 \
-    $ADDITIONAL_CONFIGURE_FLAG
-}
-
-build_android
-
-make -j4
-make install
+    --enable-decoder=mjpeg \
+    --enable-decoder=mpeg4 \
+    --enable-muxer=h264 \
+    --enable-demuxer=h264 \
+    --enable-protocol=rtp \
+    --enable-protocol=tcp \
+    --enable-protocol=udp \

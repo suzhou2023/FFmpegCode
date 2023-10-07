@@ -21,3 +21,4 @@ build
 **/build
 **/obj
 app/*.txt
+.vscode

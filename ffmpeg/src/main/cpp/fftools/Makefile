@@ -1,3 +1,4 @@
+# CONFIG_FFMPEG定义在ffbuild/config.mk
 AVPROGS-$(CONFIG_FFMPEG)   += ffmpeg
 AVPROGS-$(CONFIG_FFPLAY)   += ffplay
 AVPROGS-$(CONFIG_FFPROBE)  += ffprobe

@@ -40,20 +40,19 @@ export PREFIX=../build/$CPU
     --cc=$CC \
     --cxx=$CXX \
     --nm=$TOOLCHAIN/llvm-nm \
+    --ar=$TOOLCHAIN/llvm-ar \
     --strip=$TOOLCHAIN/llvm-strip \
     --pkg-config=$TOOLCHAIN/llvm-config \
+    --ranlib=$TOOLCHAIN/llvm-ranlib \
     --enable-cross-compile \
     --sysroot=$SYSROOT \
     --extra-cflags="$CFLAGS" \
     --extra-ldflags="$LDFLAGS" \
     --extra-ldexeflags=-pie \
     --disable-debug \
-    --disable-static \
     --enable-shared \
-    --disable-swresample \
     --disable-swscale \
     --disable-postproc \
-    --disable-avfilter \
     --disable-encoders \
     --disable-decoders \
     --disable-demuxers \

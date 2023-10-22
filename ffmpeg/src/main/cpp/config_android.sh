@@ -49,7 +49,6 @@ export PREFIX=../build/$CPU
     --extra-cflags="$CFLAGS" \
     --extra-ldflags="$LDFLAGS" \
     --extra-ldexeflags=-pie \
-    --disable-debug \
     --enable-shared \
     --disable-swscale \
     --disable-postproc \
